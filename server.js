@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blog2018');
 
 var PostSchema = mongoose.Schema({
-  title: {type: String, required: true},
+  //title: {type: String, required: true},
   body:String,
   posted:{type: Date, default:Date.now}
 });
