@@ -4,6 +4,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blog2018');
 
+var PostSchema = mongoose.Schema({
+  title: {type: String, required: true},
+  body:String,
+  posted:{type: Date, default:Date.now}
+});
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
