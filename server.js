@@ -17,7 +17,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-
+app.post("/api/blogpost", createPost);
+app.get("/api/blogpost", getAllPosts);
+app.delete("/api/blogpost/:id",deletePost);
+app.get("/api/blogpost/:id",getPostById);
+app.put("/api/blogpost/:id", updatePost);
 
 function updatePost(req, res){
   var postId = req.params.id;
