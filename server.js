@@ -19,6 +19,40 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.post("/api/blogpost", createPost);
 app.get("/api/blogpost", getAllPosts);
+app.delete("/api/blogpost/:id",deletePost);
+app.get("/api/blogpost/:id",getPostById);
+app.put("/api/blogpost/:id", updatePost);
+
+
+
+function getPostById(req, res){
+  var postId = req.params.id;
+  PostModel
+    .findById(postId)
+    .then(
+      function(post){
+        res.json(post);
+      },
+      function(post){
+        res.sendStatus(400);
+      }
+
+    )
+}
+
+function deletePost(req, res){
+  var postId = req.params.id;
+  PostModel
+    .remove({_id: postId})
+    .then(
+      function(){
+        res.sendStatus(200);
+      },
+      function(){
+        res.sendStatus(400);
+      }
+    )
+}
 
 function getAllPosts(req, res){
   PostModel
